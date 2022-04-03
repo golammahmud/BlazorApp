@@ -1,5 +1,6 @@
 using BlazorApps.Areas.Identity;
 using BlazorApps.Data;
+using BlazorApps.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
@@ -20,6 +21,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+//add employee services
+builder.Services.AddHttpClient<IEmployesServices , EmployeesServices>(client => 
+{
+    client.BaseAddress = new Uri("https://localhost:7265/");
+});
 
 var app = builder.Build();
 

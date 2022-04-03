@@ -1,0 +1,134 @@
+﻿
+@page "/addemployee"
+
+@inherits AddEmployeeBase
+
+
+	<EditForm Model="@Employee" >
+    <h3>Add Employee</h3>
+
+    <DataAnnotationsValidator />
+
+    @*<ObjectGraphDataAnnotationsValidator />*@ @*for nested data validation*@
+    <hr />
+
+     <ValidationSummary />
+    <div class="form-group row">
+        <label for="firstName" class="col-sm-2 col-form-label">
+            First Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="firstName" class="form-control  my-3" placeholder="First Name"
+                       @bind-Value="Employee.FirstName" />
+                        <ValidationMessage For="@(() => Employee.FirstName)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="lastName" class="col-sm-2 col-form-label">
+            Last Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="lastName" class="form-control my-3" placeholder="Last Name"
+                       @bind-Value="Employee.LastName" />
+                        <ValidationMessage For="@(() => Employee.LastName)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">
+            Email
+        </label>
+        <div class="col-sm-10">
+            <InputText id="email" class="form-control my-3" placeholder="Email"
+                       @bind-Value="Employee.Email" />
+                        <ValidationMessage For="@(() => Employee.Email)" />
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label for="confirmEmail" class="col-sm-2 col-form-label">
+            Confirm Email
+        </label>
+        <div class="col-sm-10">
+            <InputText id="confirmEmail" class="form-control" 
+                       @bind-Value="Employee.ConfirmEmail" />
+            <ValidationMessage For="@(() => Employee.ConfirmEmail)" />
+        </div>
+    </div>
+   
+
+
+
+
+    <div class="form-group row">
+        <label for="department" class="col-sm-2 col-form-label">
+            Department
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="department" @bind-Value="Employee.DepartmentId" class="form-control my-3">
+                @if(Departments == null)
+                    {
+                        <b>N/A</b>
+                    }
+                    else
+                    {
+                        @foreach (var dept in Departments)
+                        {
+                            <option value="@dept.DepartmentId">@dept.Name</option>
+                        }
+                    }
+                   
+            </InputSelect>
+             <ValidationMessage For="@(() => Employee.Department)" />
+        </div>
+    </div>
+
+
+
+     <div class="form-group row">
+        <label for="department" class="col-sm-2 col-form-label">
+            Gender
+        </label>
+        <div class="col-sm">          
+            <InputSelect @bind-Value="Employee.Gender">
+                @foreach (var gender in Enum.GetValues(typeof(Gender)))
+                {
+                    <option value="@gender">@gender</option>
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => Employee.Gender)" />
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="DateOfBirth" class="col-sm-2 col-form-label">Date Of Birth</label>
+    
+    <div class="col-sm-10">
+        <InputDate @bind-Value="Employee.DateOfBirth"  class="form-control my-3"/>
+           <ValidationMessage For="@(() => Employee.DateOfBirth)" />
+    </div>
+
+
+
+@*    <div class="form-group row">
+        <label for="lastName" class="col-sm-2 col-form-label">
+           Department
+        </label>
+        <div class="col-sm-10">
+            <InputText id="lastName" class="form-control my-3" placeholder="Department"
+                       @bind-Value="Employee.Department.Name" />
+                        <ValidationMessage For="@(() => Employee.Department.Name)" />
+        </div>
+    </div>
+*@
+
+
+    
+    </div>
+     <div class="text-center justify-content-center">
+          <button type="submit" class="btn btn-primary text-center" >Save</button>
+    
+     </div>
+</EditForm>

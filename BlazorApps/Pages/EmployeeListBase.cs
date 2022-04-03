@@ -1,19 +1,65 @@
-﻿namespace BlazorApps.Pages
+﻿using BlazorApps.Services;
+using Microsoft.AspNetCore.Components;
+using ViewModel.App.ViewModels;
+
+namespace BlazorApps.Pages
 {
-    public class EmployeeListBase: Microsoft.AspNetCore.Components.ComponentBase
+    public class EmployeeListBase:ComponentBase
     {
-       // public IEnumerable<Employee> Employees { get; set; }
+
+        [Inject]
+        public IEmployesServices employesServices { get; set; }
+
+        protected  string cordinate { get; set; }
+
+
+        public bool ShowFooter { get; set; } = true;
+
+        protected string buttonText { get; set; } = "Hide Footer";
+
+        protected string cssClass { get; set; } = null;
+
+        public IEnumerable<EmployeeViewModel> Employees { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            await Task.Run(LoadEmployees);
+            Employees = (await employesServices.GetEmployees()).ToList();
+            
+        }
+        protected int SelectedEmployeesCount { get; set; } = 0;
+
+
+        protected void EmployeeSelectionChanged(bool isSelected)
+        {
+            if (isSelected)
+            {
+                SelectedEmployeesCount++;
+            }
+            else
+            {
+                SelectedEmployeesCount--;
+            }
         }
 
-        private void LoadEmployees()
+       protected void button_click()
         {
-            System.Threading.Thread.Sleep(2000);
-            // Retrieve data from the server and initialize
-            // Employees property which the View will bind
+            if(buttonText=="Hide Footer")
+            {
+                buttonText = "Show Footer";
+                cssClass = "HideFooter";
+            }
+            else
+            {
+                buttonText = "Hide Footer";
+                cssClass = null;
+            }
+
         }
+
+        //protected void mouse_move(Microsoft.AspNetCore.Components.Web.MouseEventArgs e)
+        //{
+        //    cordinate = $"x={e.ClientX} y={e.ClientY}";
+        //}
+
     }
 }

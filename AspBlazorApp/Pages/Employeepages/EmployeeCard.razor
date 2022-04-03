@@ -1,0 +1,31 @@
+﻿@using AspBlazorApp.Pages.Employeepages
+
+@inherits EmployeeCardBase;
+
+
+
+<div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+    <div class="card-header">        
+        <h3> <input type="checkbox" checked="@IsSelected" @onchange="CheckBoxChanged" />  @Employee.FirstName @Employee.LastName</h3>
+    </div>
+    <img class="card-img-top imageThumbnail" src="https://i.pinimg.com/236x/aa/42/7a/aa427a67d5dc8bc31629fbe50cc62abd.jpg" />
+    @*<div>Gender: @(Employee.Gender==0? "Male":Employee.Gender==1?"Female":"Others")</div>*@
+             <h5 class="card-title">@(Employee.DepartmentId) </h5>
+      <p class="card-text">Gender: @Gender </p>
+    @if (ShowFooter)
+    {
+        <div class="card-footer text-center">
+            <a href="@($"/employeedetails/{Employee.EmployeeId}")" 
+               class="btn btn-primary m-1">View</a>
+
+            <a href="@($"/editemployee/{Employee.EmployeeId}")"  class="btn btn-info m-1">Edit</a>
+            <button class="btn btn-danger" @onclick="Delete_Click">Delete</button>
+
+           
+        </div>
+    }
+</div>
+
+@*<Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
+         ConfirmationMessage=@($"Are you sure you want to delete \"{Employee.FirstName}\"")>
+</Confirm>*@

@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Confirmation.razor" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Confirmation.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Confirmation.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Confirmation.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data.BlazoorApp\Data.BlazoorApp.csproj" />
+    <ProjectReference Include="..\..\ViewModel.App\ViewModel.App.csproj" />
+    <ProjectReference Include="..\BlazorApp.WebApi\BlazorApp.WebApi.csproj" />
+  </ItemGroup>
+
+</Project>

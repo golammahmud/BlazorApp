@@ -8,11 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\CreateEmployeeBase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\CreateEmployee.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview3.20168.3" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data.BlazoorApp\Data.BlazoorApp.csproj" />
+    <ProjectReference Include="..\..\ViewModel.App\ViewModel.App.csproj" />
   </ItemGroup>
 
 </Project>
