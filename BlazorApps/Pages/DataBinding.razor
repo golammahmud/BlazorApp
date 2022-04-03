@@ -1,0 +1,59 @@
+﻿
+@page "/databinding"
+
+@inherits DataBindingBase
+
+<h3>DataBinding</h3>
+<hr />
+
+@*one way data binding is data flow component property  to view*@
+<h3>one way data binding </h3>
+
+<div>
+	<b>@Name</b>
+</div>
+
+
+<div>
+	<b>Name with salutation </b>@(Gender=="Male"? $"Mr {Name}":$"Miss {Name}")
+</div>
+
+
+
+<div>
+	<b>Name</b> <input type="text" value="@Name" />
+</div>
+
+
+<h3>one way data binding </h3>
+<hr />
+
+<div>
+	<b>Name</b> <input type="text" value="@Name" @onchange="@(e=>{Name= e.Value.ToString();})" />
+</div>
+
+<div>
+	<b>Property binding Name</b> <input type="text" @bind="Name" />
+</div>
+
+
+<div>
+	<b>Property and event  binding </b> <input type="text" @bind="Name" @bind:event="oninput" />
+</div>
+
+
+
+
+<b>Colour :</b> <input @bind="Colour"/>
+
+@*<div @bind-style="Colour" @bind-style:event="onchange">*@
+<div @bind-style="Colour" @bind-style:event="oninput">
+
+	<h3>the colour change with the text changes</h3>
+</div>
+
+
+
+<h4>child:</h4>@buttonText
+
+

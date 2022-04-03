@@ -1,0 +1,38 @@
+﻿
+@page "/employeedetails/{Id}"
+@inherits EmployeeDetailsBase;
+
+<h3>EmployeeDetails</h3>
+
+
+
+@if(Employee==null){
+    <div class="spinner"></div>
+}
+
+else{
+	<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="https://previews.123rf.com/images/vectorkif/vectorkif1709/vectorkif170900013/85709526-business-man-cartoon-character-in-smart-clothes-office-style-young-handsome-businessman-in-suit-stan.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">@Employee.FirstName @Employee.LastName</h5>
+         <h5 class="card-title">@(Department) </h5>
+         
+          @* <p class="card-text">Gender:  @(Employee.Gender==0?"Male":Employee.Gender==1?"Female":"others") </p>*@
+            <p class="card-text">Gender:  @Gender </p>
+        <p class="card-text">@Employee.Email</p>
+
+
+        <p class="card-text"><small class="text-muted">@Employee.DateOfBirth</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+    <a href="@($"/editemployee/{Employee.EmployeeId}")"
+    class="btn btn-primary m-1">Edit</a>
+</div>
+}

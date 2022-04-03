@@ -87,3 +87,13 @@ a, .btn-link {
         transform: rotate(360deg)
     }
 }
+
+
+/*footer*/
+
+.HideFooter{
+    display:none;
+}
+
+
+/*footer*/
